@@ -24,6 +24,7 @@
       	<property name="dataSource" ref="basicDataSource"></property>
       	<!-- 配置SQL局部配置文件的文件，cn/java/dao/*.xml表示只扫描cn/java/dao下的*.xml文件 -->
       	<property name="mapperLocations" value="classpath*:dao/*.xml"></property>
+      	<property name="configLocation" value="classpath:mybatis-config.xml"></property>
       </bean>
       
       <!-- 3.配置扫描dao层接口类,将接口与sql配置文件关联 -->
