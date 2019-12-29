@@ -12,8 +12,8 @@ public interface DiscService {
 	
 	public List<Article> getArticleList();
 	
-	public boolean addaComment(String id, String article_id, String commenter,
-			String content, String time);
+	public boolean addaComment(String article_id, String commenter,
+			String content, String user_id);
 	
 	public boolean deleteAComment(String id);
 	

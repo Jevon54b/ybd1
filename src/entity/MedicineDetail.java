@@ -10,6 +10,7 @@ public class MedicineDetail {
 	private String pic;
 	private int salesum;
 	private int med_type;
+	private String type_name;
 	private String normal_name;
 	private String goods_name;
 	private String composition;
@@ -24,6 +25,62 @@ public class MedicineDetail {
 	private String attensions;
 	private String register_number;
 	private String manufacturer;
+	
+	
+	
+	private String getTypeNameFromId(int med_type) {
+		String title;
+		switch(Integer.toString(med_type)){
+	      case "30001":
+	        title = "感冒发烧";
+	        break;
+	      case "30002":
+	        title = "两性健康";
+	        break;
+	      case "30003":
+	        title = "咳嗽用药";
+	        break;
+	      case "30004":
+	        title = "皮肤用药";
+	        break;
+	      case "30005":
+	        title = "肠胃用药";
+	        break;
+	      case "30006":
+	        title = "跌打扭伤";
+	        break;
+	      case "30007":
+	        title = "儿童用药";
+	        break;
+	      case "30008":
+	        title = "滋补调养";
+	        break;
+	      case "30009":
+	        title = "处方用药";
+	        break;
+	      case "30010":
+	        title = "家庭常备";
+	        break;
+	      case "30011":
+	        title = "五官用药";
+	        break;
+	      case "30012":
+	        title = "维矿补益";
+	        break;
+	      default:
+	    	  title="???";
+		}
+		return title;
+	}
+		
+	
+	
+	public String getType_name() {
+		return type_name;
+	}
+	public void setType_name(String type_name) {
+		this.type_name = type_name;
+	}
 	public int getId() {
 		return id;
 	}
@@ -71,6 +128,7 @@ public class MedicineDetail {
 	}
 	public void setMed_type(int med_type) {
 		this.med_type = med_type;
+		this.type_name=getTypeNameFromId(med_type);
 	}
 	public String getNormal_name() {
 		return normal_name;

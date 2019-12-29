@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getAllArticles" resultType="entity.Article">
-		SELECT * FROM article;
+		SELECT id,pic,title,author,realease_time,read_num,comment_num FROM article ORDER BY realease_time desc; 
 	</select>
 	
 	<!--
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 -->
 	<insert id="addComment" parameterType="Map">
 		INSERT INTO comment 
-		SET id=#{id},article_id=#{article_id},commenter=#{commenter},content=#{content},realease_time=#{time}
+		SET article_id=#{article_id},commenter=#{commenter},content=#{content},commenter_id=#{user_id}
 	</insert>
 	
 	<!-- 删除评论
@@ -69,6 +69,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM article
 		WHERE id='${_parameter}';
 	</delete>
-
+	
+	<update id="AddArticleReadNum" parameterType="String">
+		UPDATE article set read_num = read_num+1 where id=#{0}
+	</update> 
+	
+	<update id="AddArticleCommentNum" parameterType="String">
+		UPDATE article set comment_num = comment_num+1 where id=#{0}
+	</update> 
+	
+	<update id="SubArticleCommentNum" parameterType="String">
+		UPDATE article set comment_num = comment_num-1 where id=#{0}
+	</update> 
+	
+	
 </mapper>
 

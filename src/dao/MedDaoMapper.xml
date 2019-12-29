@@ -27,7 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMedByMatching" resultType="entity.MedicineBrief" parameterType="Map">
 		SELECT * FROM medicine WHERE CONCAT(NAME,note) LIKE #{key_word} ORDER BY ${sort_way}
 	</select>
-
+	
+	<select id="selectSalesNumTopNMed" resultType="entity.MedicineBrief" parameterType="int">
+		SELECT  id,pic FROM medicine ORDER BY salesnum DESC LIMIT 5
+	</select>
 
 </mapper>
 

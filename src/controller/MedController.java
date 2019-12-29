@@ -18,6 +18,11 @@ public class MedController {
 	@Autowired
 	MedService ms;
 	
+	@ResponseBody
+	@RequestMapping(value="getTop5MedList.do",method=RequestMethod.GET)
+	public ServerResponse getTop3MedList(HttpServletRequest rs) {
+		return ServerResponse.createBySuccess("成功获取药品", ms.getTopSalesnumMedList());
+	}
 	
 	@ResponseBody
 	@RequestMapping(value="getMedicineListByTypeId.do",method=RequestMethod.GET)

@@ -14,4 +14,6 @@ public interface MedDaoMapper {
 	MedicineDetail getMedDetailById(int m_id)throws SQLException,IOException;
 	
 	List<MedicineBrief> selectMedByMatching(Map<String, Object> map)throws SQLException,IOException;
+	
+	List<MedicineBrief> selectSalesNumTopNMed();
 }

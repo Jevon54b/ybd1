@@ -202,6 +202,21 @@ public class OrderController {
 		int dist_id = Integer.parseInt(rs.getParameter("dist_id"));
 		return ServerResponse.createBySuccess("获取已完成列表成功", os.getFinishedOrder(dist_id));
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="getFinishedOrderByUserId.do",method=RequestMethod.GET)
+	public ServerResponse getFinishedOrderByUserId(HttpServletRequest rs) {
+		int user_id = Integer.parseInt(rs.getParameter("user_id"));
+		return ServerResponse.createBySuccess("获取已完成订单列表成功", os.getFinishedOrderByUserId(user_id));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="getStartingOrderByUserId.do",method=RequestMethod.GET)
+	public ServerResponse getStartingOrderByUserId(HttpServletRequest rs) {
+		int user_id = Integer.parseInt(rs.getParameter("user_id"));
+		return ServerResponse.createBySuccess("获取当前订单列表成功", os.getStartingOrderByUserId(user_id));
+	}
 
 
 }

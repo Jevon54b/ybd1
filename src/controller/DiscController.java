@@ -30,7 +30,7 @@ public class DiscController {
 	@ResponseBody
 	@RequestMapping(value="getArticleList.do",method=RequestMethod.GET)
 	public ServerResponse getArticleList(HttpServletRequest rs) {
-//responseData:articlePic£¨·âÃæ£©¡¢title¡¢author¡¢id
+		//responseData:articlePic£¨·âÃæ£©¡¢title¡¢author¡¢id
 		
 		List<Article> articlelist=discService.getArticleList();
 		
@@ -53,7 +53,7 @@ public class DiscController {
 	@ResponseBody
 	@RequestMapping(value="getArticleComment.do",method=RequestMethod.POST)
 	public ServerResponse getArticleComment(HttpServletRequest rs) {
-//responseData:commentList
+		//responseData:commentList
 		String id = rs.getParameter("id");
 		List<Comment> commentlist=discService.getArticleCommentList(id);
 		if(commentlist!=null){
@@ -66,18 +66,12 @@ public class DiscController {
 	@RequestMapping(value="addComment.do",method=RequestMethod.POST)
 	public ServerResponse addComment(HttpServletRequest rs) {
 //article_id¡¢user_id¡¢username¡¢content
-		String id = rs.getParameter("id");
 		String article_id = rs.getParameter("article_id");
 		String commenter = rs.getParameter("user_id");
 		String content = rs.getParameter("content");
-		String username = rs.getParameter("username");
-		Calendar c = Calendar.getInstance();
-		int hour = c.get(Calendar.HOUR_OF_DAY); 
-		int minute = c.get(Calendar.MINUTE); 
-		int second = c.get(Calendar.SECOND); 
-		String time = hour+":"+minute+":"+second;
+		String username = rs.getParameter("username");	
 		
-		if(discService.addaComment(id, article_id, commenter, content, time))
+		if(discService.addaComment( article_id, username, content,commenter))
 		return ServerResponse.createBySuccess("SUCCESS");
 		else {
 			return ServerResponse.createByError();

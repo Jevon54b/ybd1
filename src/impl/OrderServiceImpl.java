@@ -270,8 +270,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderToDist> getWaitingOrderByTimeDesc() {
-		return odm.getWaitingOrderListByDescTime();
+	public List<Order> getWaitingOrderByTimeDesc() {
+		List<Order> orderList = odm.getWaitingOrderListByDescTime();
+		if (orderList.size()>0) {
+			for(Order order:orderList) {
+				order.setMedList(odm.getMedListByOrderId(order.getId()));
+			}
+		}
+		return orderList;
 	}
 
 	@Override
@@ -311,15 +317,61 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderToDist> getTakedOrder(int dist_id) {
-		
-		return odm.getTakedOrderListByDistId(dist_id);
+	public List<Order> getTakedOrder(int dist_id) {
+		List<Order> orderList = odm.getTakedOrderListByDistId(dist_id);
+		if (orderList.size()>0) {
+			for(Order order:orderList) {
+				order.setMedList(odm.getMedListByOrderId(order.getId()));
+			}
+		}
+		return orderList;
 	}
 
 	@Override
-	public List<OrderToDist> getFinishedOrder(int dist_id) {
+	public List<Order> getFinishedOrder(int dist_id) {
+		List<Order> orderList = odm.getFinishedOrderListByDistId(dist_id);
 		// TODO Auto-generated method stub
-		return odm.getFinishedOrderListByDistId(dist_id);
+		if (orderList.size()>0) {
+			for(Order order:orderList) {
+				order.setMedList(odm.getMedListByOrderId(order.getId()));
+			}
+		}
+		return orderList;
+		
+	}
+
+	@Override
+	public List<Order> getStartingOrderByUserId(int user_id) {
+		List<Order> list = odm.getStartingOrderByUserId(user_id);
+		if (list.size()>0) {
+			for(Order order:list) {
+				int order_id = order.getId();
+				List<MedInOrder> medlist = odm.getMedListByOrderId(order_id);
+				if (medlist.size()>0) {
+					order.setMedList(medlist);
+				}
+			}
+			return list;
+		}else {
+			return list;
+		}		
+	}
+
+	@Override
+	public List<Order> getFinishedOrderByUserId(int user_id) {
+		List<Order> list = odm.getFinishedOrderByUserId(user_id);
+		if (list.size()>0) {
+			for(Order order:list) {
+				int order_id = order.getId();
+				List<MedInOrder> medlist = odm.getMedListByOrderId(order_id);
+				if (medlist.size()>0) {
+					order.setMedList(medlist);
+				}
+			}
+			return list;
+		}else {
+			return list;
+		}		
 	}
 
 }

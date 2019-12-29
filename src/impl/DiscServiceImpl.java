@@ -26,6 +26,7 @@ public class DiscServiceImpl implements DiscService {
 	
 	@Override
 	public Article getArticle(String id){
+		distMapper.AddArticleReadNum(id);
 		return distMapper.selectArticleById(id);
 	}
 	
@@ -40,25 +41,26 @@ public class DiscServiceImpl implements DiscService {
 	}
 
 	@Override
-	public boolean addaComment(String id, String article_id, String commenter,
-			String content, String time) {
+	public boolean addaComment(String article_id, String commenter,
+			String content, String user_id) {
 		Map<String,Object> map = new HashMap<>();
-		map.put("id", id);
 		map.put("article_id", article_id);
 		map.put("commenter", commenter);
-		map.put("time", time);
 		map.put("content", content);
+		map.put("user_id", user_id);
 		
 		int result=distMapper.addComment(map);
-		if (result==1)
+		if (result==1) {
+			distMapper.AddArticleCommentNum(article_id);
 			return true;
-		else 
-			return true;
+		}else {
+			return false;}
 	}
 
 	@Override
 	public boolean deleteAComment(String id) {
 		distMapper.deleteComment(id);
+		
 		return true;
 	}
 

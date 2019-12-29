@@ -32,5 +32,11 @@ public interface DiscDaoMapper {
     
     //и╬ндубё╛ндуб╣дid
     int deleteArticle(String id);
+    
+    int AddArticleReadNum(String article_id);
+    
+    int AddArticleCommentNum(String article_id);
+    
+    int SubArticleCommentNum(String article_id);
  
 }

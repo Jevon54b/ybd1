@@ -48,11 +48,11 @@ public interface OrderDaoMapper {
 	
 	int addCheckToOrder(Map<String, Object> map);
 	
-	List<OrderToDist> getWaitingOrderListByDescTime();
+	List<Order> getWaitingOrderListByDescTime();
 	
-	List<OrderToDist> getTakedOrderListByDistId(int dist_id);
+	List<Order> getTakedOrderListByDistId(int dist_id);
 	
-	List<OrderToDist> getFinishedOrderListByDistId(int dist_id);
+	List<Order> getFinishedOrderListByDistId(int dist_id);
 	
 	List<MedInOrder> getMedListByOrderId(int order_id);
 	
@@ -62,4 +62,7 @@ public interface OrderDaoMapper {
 	
 	int finishOrder(int order_id)throws Exception;//订单状态更新为完成配送
 	
+	List<Order> getStartingOrderByUserId(int user_id);
+	
+	List<Order> getFinishedOrderByUserId(int user_id);
 }

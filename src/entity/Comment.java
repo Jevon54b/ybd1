@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Comment {
 
@@ -8,8 +9,17 @@ public class Comment {
 	private String article_id;
 	private String commenter;
 	private String content;
-	private Time time;
+	private Timestamp release_time;
+	private String commenter_id;
 	
+	
+	
+	public String getCommenter_id() {
+		return commenter_id;
+	}
+	public void setCommenter_id(String commenter_id) {
+		this.commenter_id = commenter_id;
+	}
 	public String getId() {
 		return id;
 	}
@@ -34,10 +44,10 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Time getTime() {
-		return time;
+	public Timestamp getTime() {
+		return release_time;
 	}
-	public void setTime(Time time) {
-		this.time = time;
+	public void setTime(Timestamp  release_time) {
+		this.release_time = release_time;
 	}
 }

@@ -1,15 +1,40 @@
 package entity;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Article {
 
 	private String id;
 	private String title;
 	private String author;
-	private Time realease_time;
+	private Timestamp realease_time;
 	private String content;
+	private String pic;
+	private int read_num;
+	private int comment_num;
 	
+	
+	
+	
+	public int getRead_num() {
+		return read_num;
+	}
+	public void setRead_num(int read_num) {
+		this.read_num = read_num;
+	}
+	public int getComment_num() {
+		return comment_num;
+	}
+	public void setComment_num(int comment_num) {
+		this.comment_num = comment_num;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 	public String getId() {
 		return id;
 	}
@@ -28,10 +53,10 @@ public class Article {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public Time getRealease_time() {
+	public Timestamp getRealease_time() {
 		return realease_time;
 	}
-	public void setRealease_time(Time realease_time) {
+	public void setRealease_time(Timestamp realease_time) {
 		this.realease_time = realease_time;
 	}
 	public String getContent() {

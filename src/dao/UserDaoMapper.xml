@@ -27,11 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType：参数类型
 	 -->
 	<select id="selectByPrimaryKey" resultType="entity.User" parameterType="INT">
-		SELECT * FROM distributer WHERE id=#{0}
+		SELECT * FROM user WHERE id=#{0}
 	</select>
 	
 	<select id="selectByPhone" resultType="entity.User" parameterType="String">
-		SELECT * FROM distributer WHERE phone=#{0}
+		SELECT * FROM user WHERE phone=#{0}
 	</select>
 	
 	

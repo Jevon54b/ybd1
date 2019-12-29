@@ -95,6 +95,12 @@ public class MedServiceImpl implements MedService{
 		return list;
 	}
 
+	@Override
+	public List<MedicineBrief> getTopSalesnumMedList() {
+		// TODO Auto-generated method stub
+		return medDaoMapper.selectSalesNumTopNMed();
+	}
+
 	
 
 }

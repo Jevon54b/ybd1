@@ -9,6 +9,15 @@ public class User {
 	private String phone;
 	private String address;
 	private String nick;
+	private String money;
+	
+	
+	public String getMoney() {
+		return money;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
 	public String getId() {
 		return id;
 	}

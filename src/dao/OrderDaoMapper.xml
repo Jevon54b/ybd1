@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 获取当前订单的药品  -->
 	
 	<select id="getMedListFromCurOrder" resultType="entity.MedInOrder" parameterType="int">
-		SELECT om.`med_id`,om.`id` as om_id , m.`name`,m.`price`,m.`prescript`,m.`packing_size`,om.`med_num`,o.`total_sum` FROM medicine AS m , ordermed AS om ,morder AS o   WHERE m.id = om.`med_id` AND o.`id` = om.`order_id` AND o.`state`=0 AND o.`user_id`=#{0}
+		SELECT om.`med_id`,om.`id` as om_id , m.`name`,m.`price`,m.pic,m.`prescript`,m.`packing_size`,om.`med_num`,o.`total_sum` FROM medicine AS m , ordermed AS om ,morder AS o   WHERE m.id = om.`med_id` AND o.`id` = om.`order_id` AND o.`state`=0 AND o.`user_id`=#{0}
 	</select>
 	
 	<select id="getCurMednumByOMId" resultType="int" parameterType="int">
@@ -90,20 +90,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE morder set user_name=#{user_name},user_phone=#{user_phone},user_address=#{user_address},speed = #{speed},need_check = 1,check_pic=#{check_pic},pay_time = CURRENT_TIMESTAMP where id = #{order_id}
 	</update>
 	
-	<select id="getWaitingOrderListByDescTime" resultType="entity.OrderToDist">
-		SELECT pay_time,total_sum,id as order_id,user_address,store_address,speed from morder where state = 1 and need_check=0 ORDER BY pay_time DESC; 
+	<select id="getWaitingOrderListByDescTime" resultType="entity.Order">
+		SELECT * from morder where state = 1 and need_check=0 ORDER BY pay_time DESC; 
 	</select>
 	
-	<select id="getTakedOrderListByDistId" resultType="entity.OrderToDist" parameterType="int">
-		SELECT pay_time,total_sum,id as order_id,user_address,store_address,speed from morder where state = 2 and need_check=0 and distributer_id = #{0} ORDER BY pay_time DESC; 
+	<select id="getTakedOrderListByDistId" resultType="entity.Order" parameterType="int">
+		SELECT * from morder where state = 2 and need_check=0 and distributer_id = #{0} ORDER BY pay_time DESC; 
 	</select>
 	
-	<select id="getFinishedOrderListByDistId" resultType="entity.OrderToDist" parameterType="int">
-		SELECT finish_time,total_sum,id as order_id,user_address,store_address,speed from morder where state = 3 and need_check=0 and distributer_id = #{0} ORDER BY finish_time DESC; 
+	<select id="getFinishedOrderListByDistId" resultType="entity.Order" parameterType="int">
+		SELECT * from morder where state = 3 and need_check=0 and distributer_id = #{0} ORDER BY finish_time DESC; 
 	</select>
 	
 	<select id="getMedListByOrderId" resultType="entity.MedInOrder" parameterType="int">
-		SELECT om.`med_id`,om.`id` as om_id , m.`name`,m.`price`,m.`prescript`,m.`packing_size`,om.`med_num`,o.`total_sum` FROM medicine AS m , ordermed AS om ,morder AS o   WHERE m.id = om.`med_id` AND o.`id` = om.`order_id` AND o.`id`=#{0}
+		SELECT m.`pic`,om.`med_id`,om.`id` as om_id , m.`name`,m.`price`,m.`prescript`,m.`packing_size`,om.`med_num`,o.`total_sum` FROM medicine AS m , ordermed AS om ,morder AS o   WHERE m.id = om.`med_id` AND o.`id` = om.`order_id` AND o.`id`=#{0}
 	</select>
 	
 	<select id="getOrderInfoByOrderId" resultType="entity.OrderDetail" parameterType="int">
@@ -115,9 +115,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="finishOrder" parameterType="int">
-		UPDATE morder set state = 3,set finish_time = CURRENT_TIMESTAMP where id = #{0}
+		UPDATE morder set state = 3,finish_time = CURRENT_TIMESTAMP where id = #{0}
 	</update>
 	
+	<select id="getStartingOrderByUserId" resultType="entity.Order" parameterType="int">
+		SELECT id,total_sum,state,pay_time,finish_time,need_check FROM morder WHERE (state = 1 OR state = 2  OR need_check = 1 ) AND user_id = #{0} ORDER BY pay_time DESC
+	</select>
+	
+	
+	
+	<select id="getFinishedOrderByUserId" resultType="entity.Order" parameterType="int">
+		SELECT id,total_sum,state,pay_time,finish_time,need_check FROM morder WHERE (state = 3 OR state = -1 OR need_check = -1) AND user_id = #{0}	ORDER BY finish_time DESC
+	</select>
 	
 
 </mapper>
