@@ -12,6 +12,6 @@ public interface MedService {
 	MedicineDetail getMedDetailById(int m_id);
 	
 	List<MedicineBrief> searchMedByKeyword(String keyword,int sort_way);
-	
 	List<MedicineBrief> getTopSalesnumMedList();
+
 }

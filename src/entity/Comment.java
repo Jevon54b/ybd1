@@ -9,7 +9,7 @@ public class Comment {
 	private String article_id;
 	private String commenter;
 	private String content;
-	private Timestamp release_time;
+	private Timestamp realease_time;
 	private String commenter_id;
 	
 	
@@ -44,10 +44,10 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Timestamp getTime() {
-		return release_time;
+	public Timestamp getRealease_time() {
+		return realease_time;
 	}
-	public void setTime(Timestamp  release_time) {
-		this.release_time = release_time;
+	public void setRealease_time(Timestamp  realease_time) {
+		this.realease_time = realease_time;
 	}
 }

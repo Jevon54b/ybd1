@@ -25,7 +25,7 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping(value="register.do",method=RequestMethod.POST)
-	public ServerResponse registerDistributer(HttpServletRequest rs) {
+	public ServerResponse registerUser(HttpServletRequest rs) {
 		String phone = rs.getParameter("phone");
 		String nick = rs.getParameter("nick");
 		String password = rs.getParameter("password");

@@ -40,7 +40,7 @@ public class DiscController {
 	@ResponseBody
 	@RequestMapping(value="getArticleDetail.do",method=RequestMethod.POST)
 	public ServerResponse getArticleDetail(HttpServletRequest rs) {
-//responseData:id、title、content、author、releasetime、pic
+	//responseData:id、title、content、author、releasetime、pic
 		String id = rs.getParameter("id");
 		Article article=discService.getArticle(id);
 //		System.out.println(article);

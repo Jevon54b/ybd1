@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectSalesNumTopNMed" resultType="entity.MedicineBrief" parameterType="int">
-		SELECT  id,pic FROM medicine ORDER BY salesnum DESC LIMIT 5
+		SELECT  id,name,price,prescript,note,pic,salesnum,med_type FROM medicine ORDER BY salesnum DESC LIMIT 5
 	</select>
 
 </mapper>
